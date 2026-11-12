@@ -8,4 +8,6 @@ In the main part we will introduce github copilot (using Visual Studio Code) as 
 Using it this way, the entry barrier for students with no or only some prior knowledge is lowered considerably and allows us to go to
 the fun part of coding much faster and skip a big pile of frustration about syntax.
 
-We will use simple (historic) games as an example, like pong or snake.
+We will use simple (historic) games as an example, like pong or snake. The implmentation uses pygame (pygame-ce to be precise).
+
+Installation: pip install pygame-ce
