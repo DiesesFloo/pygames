@@ -7,9 +7,13 @@ Los geht's mit der Installation von pygame-ce:
 git clone https://github.com/TillHaenisch2/pygames
 
 python -m venv pygames
+
 cd pygames
+
 . bin/activate
+
 pip install pygame-ce
 
 cd session1
+
 python game.py
