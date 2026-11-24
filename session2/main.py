@@ -133,11 +133,11 @@ class Platform:
             self.write('Keine Spiele gefunden (Ordner games/).', 60, 220)
         else:
             for index, (_, name) in enumerate(self.games):
-                y = 190 + index * 58
+                y = 190 + index * 29
                 selected = index == self.selected
                 if selected:
                     pygame.draw.rect(self.screen, (39, 60, 81),
-                                     (45, y - 9, 710, 48), border_radius=8)
+                                     (45, y - 9, 710, 28), border_radius=8)
                 self.write(('> ' if selected else '   ') + name, 65, y,
                            color=ACCENT if selected else FG)
         self.write('Pfeiltasten: Auswahl    Enter: Spielen    N: Nickname',
