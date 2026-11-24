@@ -2,6 +2,13 @@ import pygame
 from pygame.surface import Surface
 import random
 
+"""
+Events: 
+Key: "Block merged" Value: New score (int)
+Key: "Lines cleared" Value: Number of lines (int)
+Key: "Level up" Value: New level (int)
+"""
+
 GAME_NAME = "BetterTetris"
 SCREEN_HEIGHT = 600
 SCREEN_WIDTH = 800
@@ -167,8 +174,11 @@ class Game:
             if(self.canvas.is_collided(self.cur_mov)):    
                 self.cur_mov.y -= 1
                 lines = self.canvas.merge(self.cur_mov)
-                self.lines += lines 
                 self.score += POINTS[lines]
+                self.api.log_event("Block merged", value=self.score)
+                if lines > 0: 
+                    self.lines += lines 
+                    self.api.log_event("Lines cleared", value=lines)
                 self.cur_mov = self.new_peace()
                 self.check_game_over()
                 self.update_level()
@@ -180,7 +190,12 @@ class Game:
         if self.level >= MAX_LEVEL: 
             return 
 
-        self.level = (self.lines//10) + 1 
+        new_level = (self.lines//10) + 1 
+        if self.level == new_level:
+            return 
+
+        self.level = new_level
+        self.api.log_event("Block merged", value=new_level)
 
     def get_current_speed_modulo(self, keys) -> int: 
         if keys[pygame.K_DOWN] or keys[pygame.K_s]: 
